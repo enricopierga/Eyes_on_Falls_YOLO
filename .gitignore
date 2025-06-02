@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 myenv
-=======
 .DS_Store
 Datasets/
->>>>>>> 4fb409b480bd7adce08b6bf8f7900e18c65b9293
-Eyes_on_Falls_YOLO\Pierga_eof_YOLO\dataset
+Pierga_eof_YOLO/dataset/
