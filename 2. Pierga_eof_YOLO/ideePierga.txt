@@ -1,0 +1,2 @@
+- Vedere bene quali sono risoluzioni ottimali per inferenza su opencv.com
+- Capire come ottimizzare su Raspberry l'inferenza
