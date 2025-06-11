@@ -1,0 +1,41 @@
+{
+  "model_name": "model2_kiko_\u00e8_nano",
+  "model_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/2. Pierga_eof_YOLO/v8nfirst/v8n_dataset_pierga.pt",
+  "metrics": {
+    "accuracy": 0.982521847690387,
+    "precision_not_fallen": 0.9948849104859335,
+    "recall_not_fallen": 0.970074812967581,
+    "f1_not_fallen": 0.9823232323232324,
+    "precision_fallen": 0.9707317073170731,
+    "recall_fallen": 0.995,
+    "f1_fallen": 0.9827160493827161,
+    "macro_precision": 0.9828083089015034,
+    "macro_recall": 0.9825374064837905,
+    "macro_f1": 0.9825196408529742
+  },
+  "confusion_matrix": [
+    [
+      389,
+      12
+    ],
+    [
+      2,
+      398
+    ]
+  ],
+  "speed_metrics": {
+    "mean_inference_time": 0.040311595150954706,
+    "std_inference_time": 0.004090941821294809,
+    "min_inference_time": 0.03404998779296875,
+    "max_inference_time": 0.07664012908935547,
+    "fps": 24.80675835960604,
+    "total_images": 802,
+    "detection_rate": 0.9987531172069826
+  },
+  "model_size_mb": 17.600131034851074,
+  "error_analysis": {
+    "false_negative_count": 1,
+    "false_negative_rate": 0.0012468827930174563,
+    "total_predictions": 802
+  }
+}

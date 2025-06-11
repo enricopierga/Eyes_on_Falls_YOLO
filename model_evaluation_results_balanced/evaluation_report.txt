@@ -1,0 +1,66 @@
+
+📋 REPORT VALUTAZIONE MODELLI YOLO - FALL DETECTION
+====================================================
+Data: 2025-06-11 19:17
+
+1. MODELLI VALUTATI:
+--------------------
+   • model1_the_hystory
+   • model2_kiko_è_nano
+   • thelastdance_11
+
+2. RISULTATI PRINCIPALI:
+------------------------
+
+   model1_the_hystory:
+   - Accuracy: 0.977
+   - F1-Score medio: 0.977
+   - F1 not_fallen: 0.978
+   - F1 fallen: 0.977
+   - FPS: 40.75
+   - Tempo inferenza: 24.5 ms
+   - Detection Rate: 99.4%
+   - Dimensione: 5.2 MB
+
+   model2_kiko_è_nano:
+   - Accuracy: 0.983
+   - F1-Score medio: 0.983
+   - F1 not_fallen: 0.982
+   - F1 fallen: 0.983
+   - FPS: 24.81
+   - Tempo inferenza: 40.3 ms
+   - Detection Rate: 99.9%
+   - Dimensione: 17.6 MB
+
+   thelastdance_11:
+   - Accuracy: 0.986
+   - F1-Score medio: 0.986
+   - F1 not_fallen: 0.986
+   - F1 fallen: 0.986
+   - FPS: 24.51
+   - Tempo inferenza: 40.8 ms
+   - Detection Rate: 100.0%
+   - Dimensione: 5.2 MB
+
+3. VINCITORI PER CATEGORIA:
+---------------------------
+   • Miglior Accuracy: thelastdance_11
+   • Miglior F1-Score: thelastdance_11
+   • Più Veloce (FPS): model1_the_hystory
+   • Più Leggero: model1_the_hystory
+   • Miglior Detection Rate: thelastdance_11
+   • Miglior Trade-off: model1_the_hystory
+
+4. RACCOMANDAZIONI:
+-------------------
+
+   📱 Per deployment real-time su CPU/Edge:
+      → Consigliato: model1_the_hystory
+      → Alternativa leggera: model1_the_hystory
+
+   🎯 Per massima accuratezza:
+      → Consigliato: thelastdance_11
+      → Miglior F1-Score: thelastdance_11
+
+   ⚖️ Per uso bilanciato:
+      → Consigliato: model1_the_hystory

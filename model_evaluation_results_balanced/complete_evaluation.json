@@ -1,0 +1,210 @@
+{
+  "evaluation_date": "2025-06-11T19:17:33.711857",
+  "models_evaluated": [
+    "model1_the_hystory",
+    "model2_kiko_\u00e8_nano",
+    "thelastdance_11"
+  ],
+  "test_dataset": {
+    "images_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/Datasets/balanced_yolo_dataset/images/test",
+    "labels_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/Datasets/balanced_yolo_dataset/labels/test"
+  },
+  "comparison_table": [
+    {
+      "Model": "model1_the_hystory",
+      "Accuracy": 0.9774153074027604,
+      "Precision (avg)": 0.9774121232730066,
+      "Recall (avg)": 0.9774301619688153,
+      "F1-Score (avg)": 0.9774149874055416,
+      "F1 not_fallen": 0.9775,
+      "F1 fallen": 0.9773299748110831,
+      "FPS": 40.754860005629396,
+      "Inference Time (ms)": 24.536950927125545,
+      "Model Size (MB)": 5.186487197875977,
+      "Detection Rate": 0.9937655860349127,
+      "trade_off_score": 0.9563571891827654
+    },
+    {
+      "Model": "model2_kiko_\u00e8_nano",
+      "Accuracy": 0.982521847690387,
+      "Precision (avg)": 0.9828083089015034,
+      "Recall (avg)": 0.9825374064837905,
+      "F1-Score (avg)": 0.9825196408529742,
+      "F1 not_fallen": 0.9823232323232324,
+      "F1 fallen": 0.9827160493827161,
+      "FPS": 24.80675835960604,
+      "Inference Time (ms)": 40.31159515095471,
+      "Model Size (MB)": 17.600131034851074,
+      "Detection Rate": 0.9987531172069826,
+      "trade_off_score": 0.8111242007898496
+    },
+    {
+      "Model": "thelastdance_11",
+      "Accuracy": 0.986284289276808,
+      "Precision (avg)": 0.9864325171693042,
+      "Recall (avg)": 0.986284289276808,
+      "F1-Score (avg)": 0.986283244319021,
+      "F1 not_fallen": 0.9861635220125786,
+      "F1 fallen": 0.9864029666254636,
+      "FPS": 24.51427932701178,
+      "Inference Time (ms)": 40.79255142116785,
+      "Model Size (MB)": 5.213647842407227,
+      "Detection Rate": 1.0,
+      "trade_off_score": 0.8824486152926945
+    }
+  ],
+  "detailed_results": {
+    "model1_the_hystory": {
+      "model_name": "model1_the_hystory",
+      "model_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/1. fallen_people_detection/fpds_minimal/weights/best.pt",
+      "metrics": {
+        "accuracy": 0.9774153074027604,
+        "precision_not_fallen": 0.9799498746867168,
+        "recall_not_fallen": 0.9750623441396509,
+        "f1_not_fallen": 0.9775,
+        "precision_fallen": 0.9748743718592965,
+        "recall_fallen": 0.9797979797979798,
+        "f1_fallen": 0.9773299748110831,
+        "macro_precision": 0.9774121232730066,
+        "macro_recall": 0.9774301619688153,
+        "macro_f1": 0.9774149874055416
+      },
+      "confusion_matrix": [
+        [
+          391,
+          10
+        ],
+        [
+          8,
+          388
+        ]
+      ],
+      "speed_metrics": {
+        "mean_inference_time": 0.024536950927125545,
+        "std_inference_time": 0.002755690507346671,
+        "min_inference_time": 0.02164292335510254,
+        "max_inference_time": 0.06505918502807617,
+        "fps": 40.754860005629396,
+        "total_images": 802,
+        "detection_rate": 0.9937655860349127
+      },
+      "model_size_mb": 5.186487197875977,
+      "error_analysis": {
+        "false_negative_count": 5,
+        "false_negative_rate": 0.006234413965087282,
+        "total_predictions": 802
+      }
+    },
+    "model2_kiko_\u00e8_nano": {
+      "model_name": "model2_kiko_\u00e8_nano",
+      "model_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/2. Pierga_eof_YOLO/v8nfirst/v8n_dataset_pierga.pt",
+      "metrics": {
+        "accuracy": 0.982521847690387,
+        "precision_not_fallen": 0.9948849104859335,
+        "recall_not_fallen": 0.970074812967581,
+        "f1_not_fallen": 0.9823232323232324,
+        "precision_fallen": 0.9707317073170731,
+        "recall_fallen": 0.995,
+        "f1_fallen": 0.9827160493827161,
+        "macro_precision": 0.9828083089015034,
+        "macro_recall": 0.9825374064837905,
+        "macro_f1": 0.9825196408529742
+      },
+      "confusion_matrix": [
+        [
+          389,
+          12
+        ],
+        [
+          2,
+          398
+        ]
+      ],
+      "speed_metrics": {
+        "mean_inference_time": 0.040311595150954706,
+        "std_inference_time": 0.004090941821294809,
+        "min_inference_time": 0.03404998779296875,
+        "max_inference_time": 0.07664012908935547,
+        "fps": 24.80675835960604,
+        "total_images": 802,
+        "detection_rate": 0.9987531172069826
+      },
+      "model_size_mb": 17.600131034851074,
+      "error_analysis": {
+        "false_negative_count": 1,
+        "false_negative_rate": 0.0012468827930174563,
+        "total_predictions": 802
+      }
+    },
+    "thelastdance_11": {
+      "model_name": "thelastdance_11",
+      "model_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/3. fallen_people_detection/best_fall_detection_yolo11.pt",
+      "metrics": {
+        "accuracy": 0.986284289276808,
+        "precision_not_fallen": 0.9949238578680203,
+        "recall_not_fallen": 0.9775561097256857,
+        "f1_not_fallen": 0.9861635220125786,
+        "precision_fallen": 0.9779411764705882,
+        "recall_fallen": 0.9950124688279302,
+        "f1_fallen": 0.9864029666254636,
+        "macro_precision": 0.9864325171693042,
+        "macro_recall": 0.986284289276808,
+        "macro_f1": 0.986283244319021
+      },
+      "confusion_matrix": [
+        [
+          392,
+          9
+        ],
+        [
+          2,
+          399
+        ]
+      ],
+      "speed_metrics": {
+        "mean_inference_time": 0.04079255142116785,
+        "std_inference_time": 0.003198577773457896,
+        "min_inference_time": 0.036427974700927734,
+        "max_inference_time": 0.07234001159667969,
+        "fps": 24.51427932701178,
+        "total_images": 802,
+        "detection_rate": 1.0
+      },
+      "model_size_mb": 5.213647842407227,
+      "error_analysis": {
+        "false_negative_count": 0,
+        "false_negative_rate": 0.0,
+        "total_predictions": 802
+      }
+    }
+  },
+  "winners": {
+    "Miglior Accuracy": "thelastdance_11",
+    "Miglior F1-Score": "thelastdance_11",
+    "Pi\u00f9 Veloce (FPS)": "model1_the_hystory",
+    "Pi\u00f9 Leggero": "model1_the_hystory",
+    "Miglior Detection Rate": "thelastdance_11",
+    "Miglior Trade-off": "model1_the_hystory"
+  },
+  "config": {
+    "models": {
+      "model1_the_hystory": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/1. fallen_people_detection/fpds_minimal/weights/best.pt",
+      "model2_kiko_\u00e8_nano": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/2. Pierga_eof_YOLO/v8nfirst/v8n_dataset_pierga.pt",
+      "thelastdance_11": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/3. fallen_people_detection/best_fall_detection_yolo11.pt"
+    },
+    "test_data": {
+      "images_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/Datasets/balanced_yolo_dataset/images/test",
+      "labels_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/Datasets/balanced_yolo_dataset/labels/test"
+    },
+    "evaluation_params": {
+      "conf_threshold": 0.25,
+      "iou_threshold": 0.45,
+      "batch_size": 16,
+      "device": "cpu"
+    },
+    "class_names": {
+      "0": "not_fallen",
+      "1": "fallen"
+    }
+  }
+}

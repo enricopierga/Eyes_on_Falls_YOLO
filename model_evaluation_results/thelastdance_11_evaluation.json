@@ -1,0 +1,41 @@
+{
+  "model_name": "thelastdance_11",
+  "model_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/3. fallen_people_detection/best_fall_detection_yolo11.pt",
+  "metrics": {
+    "accuracy": 0.986284289276808,
+    "precision_not_fallen": 0.9949238578680203,
+    "recall_not_fallen": 0.9775561097256857,
+    "f1_not_fallen": 0.9861635220125786,
+    "precision_fallen": 0.9779411764705882,
+    "recall_fallen": 0.9950124688279302,
+    "f1_fallen": 0.9864029666254636,
+    "macro_precision": 0.9864325171693042,
+    "macro_recall": 0.986284289276808,
+    "macro_f1": 0.986283244319021
+  },
+  "confusion_matrix": [
+    [
+      392,
+      9
+    ],
+    [
+      2,
+      399
+    ]
+  ],
+  "speed_metrics": {
+    "mean_inference_time": 0.04667838969432802,
+    "std_inference_time": 0.005424980480628793,
+    "min_inference_time": 0.040693044662475586,
+    "max_inference_time": 0.11285710334777832,
+    "fps": 21.42318975758309,
+    "total_images": 802,
+    "detection_rate": 1.0
+  },
+  "model_size_mb": 5.213647842407227,
+  "error_analysis": {
+    "false_negative_count": 0,
+    "false_negative_rate": 0.0,
+    "total_predictions": 802
+  }
+}

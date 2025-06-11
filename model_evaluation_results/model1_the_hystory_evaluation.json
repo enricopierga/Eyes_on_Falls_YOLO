@@ -1,0 +1,41 @@
+{
+  "model_name": "model1_the_hystory",
+  "model_path": "/Users/andreavisi/Desktop/PYTHON/Sistemi operativi Dedicati 2025/PROGETTO/Eyes_on_falls_YOLO/1. fallen_people_detection/fpds_minimal/weights/best.pt",
+  "metrics": {
+    "accuracy": 0.9774153074027604,
+    "precision_not_fallen": 0.9799498746867168,
+    "recall_not_fallen": 0.9750623441396509,
+    "f1_not_fallen": 0.9775,
+    "precision_fallen": 0.9748743718592965,
+    "recall_fallen": 0.9797979797979798,
+    "f1_fallen": 0.9773299748110831,
+    "macro_precision": 0.9774121232730066,
+    "macro_recall": 0.9774301619688153,
+    "macro_f1": 0.9774149874055416
+  },
+  "confusion_matrix": [
+    [
+      391,
+      10
+    ],
+    [
+      8,
+      388
+    ]
+  ],
+  "speed_metrics": {
+    "mean_inference_time": 0.03008308345242926,
+    "std_inference_time": 0.04408850626147715,
+    "min_inference_time": 0.023035049438476562,
+    "max_inference_time": 1.2662808895111084,
+    "fps": 33.24127334158787,
+    "total_images": 802,
+    "detection_rate": 0.9937655860349127
+  },
+  "model_size_mb": 5.186487197875977,
+  "error_analysis": {
+    "false_negative_count": 5,
+    "false_negative_rate": 0.006234413965087282,
+    "total_predictions": 802
+  }
+}
