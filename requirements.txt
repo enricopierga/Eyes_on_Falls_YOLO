@@ -1,0 +1,10 @@
+ultralytics==8.2.21      # YOLOv8 / YOLOv11 compatibile
+opencv-python
+matplotlib
+pandas
+jupyter
+ipykernel
+torch>=2.2.0
+torchvision
+scipy
+numpy
