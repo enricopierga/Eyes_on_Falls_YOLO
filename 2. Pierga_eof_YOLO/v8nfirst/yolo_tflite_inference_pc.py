@@ -4,42 +4,17 @@ import tensorflow as tf
 import time
 
 # Configurazione
-MODEL_PATH = "v8n_dataset_pierga_float16.tflite"
+MODEL_PATH = "best_fall_detection_yolo11_float32.tflite"
 INPUT_SIZE = 640
-CONF_THRESHOLD = 0.2
-IOU_THRESHOLD = 0.45
+CONF_THRESHOLD = 0.3
 CLASS_NAMES = ["fallen", "not_fallen"]
 
-# Carica modello TFLite su PC (TensorFlow full)
-interpreter = tf.lite.Interpreter(model_path=MODEL_PATH)
+# Carica TFLite (su PC con TensorFlow full)
+tflite = tf.lite
+interpreter = tflite.Interpreter(model_path=MODEL_PATH)
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
-
-# Funzioni di supporto
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
-
-def xywh2xyxy(x):
-    y = np.copy(x)
-    y[..., 0] = x[..., 0] - x[..., 2] / 2  # x1
-    y[..., 1] = x[..., 1] - x[..., 3] / 2  # y1
-    y[..., 2] = x[..., 0] + x[..., 2] / 2  # x2
-    y[..., 3] = x[..., 1] + x[..., 3] / 2  # y2
-    return y
-
-def process_output(output):
-    output = np.squeeze(output).transpose()  # (8400, 6)
-    boxes = sigmoid(output[:, 0:4])
-    scores = sigmoid(output[:, 4])
-    class_scores = sigmoid(output[:, 5:])
-    class_ids = np.argmax(class_scores, axis=-1)
-    class_conf = np.max(class_scores, axis=-1)
-    final_scores = scores * class_conf
-    mask = final_scores > CONF_THRESHOLD
-    boxes, final_scores, class_ids = boxes[mask], final_scores[mask], class_ids[mask]
-    boxes = xywh2xyxy(boxes) * INPUT_SIZE
-    return boxes, final_scores, class_ids
 
 # Inizializza webcam
 cap = cv2.VideoCapture(0)
@@ -53,7 +28,6 @@ while True:
 
     img_resized = cv2.resize(frame, (INPUT_SIZE, INPUT_SIZE))
     input_data = np.expand_dims(img_resized, axis=0).astype(np.float32) / 255.0
-
     interpreter.set_tensor(input_details[0]['index'], input_data)
 
     start = time.time()
@@ -61,15 +35,32 @@ while True:
     end = time.time()
 
     output_data = interpreter.get_tensor(output_details[0]['index'])
-    boxes, scores, class_ids = process_output(output_data)
+    output = np.squeeze(output_data)  # (N, 6)
+    if output.ndim == 1:
+        output = np.expand_dims(output, axis=0)  # Caso di singola detection
 
+    boxes = output[:, 0:4]
+    scores = output[:, 4]
+    class_ids = output[:, 5].astype(int)
+
+    # Filtra confidenza
+    mask = scores > CONF_THRESHOLD
+    boxes, scores, class_ids = boxes[mask], scores[mask], class_ids[mask]
+
+    # Adatta box a dimensione originale
     scale_x = frame.shape[1] / INPUT_SIZE
     scale_y = frame.shape[0] / INPUT_SIZE
 
     for i in range(len(boxes)):
         x1, y1, x2, y2 = boxes[i]
         x1, y1, x2, y2 = int(x1 * scale_x), int(y1 * scale_y), int(x2 * scale_x), int(y2 * scale_y)
-        label = f"{CLASS_NAMES[class_ids[i]]}: {scores[i]:.2f}"
+
+        # Protezione robusta su class index
+        if class_ids[i] >= len(CLASS_NAMES):
+            label = f"Unknown: {scores[i]:.2f}"
+        else:
+            label = f"{CLASS_NAMES[class_ids[i]]}: {scores[i]:.2f}"
+
         color = (0, 255, 0) if class_ids[i] == 0 else (0, 0, 255)
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
         cv2.putText(frame, label, (x1, y1 - 10),
@@ -79,6 +70,9 @@ while True:
     cv2.putText(frame, f"FPS: {fps:.2f}", (10, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
 
-    cv2.imshow("YOLOv8n TFLite Live", frame)
+    cv2.imshow('YOLOv11 TFLite NMS Inference', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
+cap.release()
+cv2.destroyAllWindows()

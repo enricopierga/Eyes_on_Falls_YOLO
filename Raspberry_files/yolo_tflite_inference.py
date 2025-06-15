@@ -1,46 +1,42 @@
 import cv2
 import numpy as np
-import tflite_runtime.interpreter as tflite
+import tensorflow as tf
 import time
 
 # Configurazione
-MODEL_PATH = "v8n_dataset_pierga_float16.tflite"
+MODEL_PATH = "best_fall_detection_yolo11_float16.tflite"
 INPUT_SIZE = 640
-CONF_THRESHOLD = 0.4
-IOU_THRESHOLD = 0.45
+CONF_THRESHOLD = 0.3
 CLASS_NAMES = ["fallen", "not_fallen"]
 
-# Load model
+# Usa TensorFlow completo (PC)
+tflite = tf.lite
 interpreter = tflite.Interpreter(model_path=MODEL_PATH)
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
+# Normalizzazione output helper
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-def xywh2xyxy(x):
-    y = np.copy(x)
-    y[..., 0] = x[..., 0] - x[..., 2] / 2  # x1
-    y[..., 1] = x[..., 1] - x[..., 3] / 2  # y1
-    y[..., 2] = x[..., 0] + x[..., 2] / 2  # x2
-    y[..., 3] = x[..., 1] + x[..., 3] / 2  # y2
-    return y
-
+# Parser semplificato per export Ultralytics TFLite (con decode già incluso nel file)
 def process_output(output):
     output = np.squeeze(output).transpose()  # (8400, 6)
-    boxes = sigmoid(output[:, 0:4])
+    boxes = output[:, 0:4]
     scores = sigmoid(output[:, 4])
     class_scores = sigmoid(output[:, 5:])
     class_ids = np.argmax(class_scores, axis=-1)
     class_conf = np.max(class_scores, axis=-1)
     final_scores = scores * class_conf
+
     mask = final_scores > CONF_THRESHOLD
     boxes, final_scores, class_ids = boxes[mask], final_scores[mask], class_ids[mask]
-    boxes = xywh2xyxy(boxes) * INPUT_SIZE
+
+    # Se necessario riscalare le box a INPUT_SIZE (ma spesso già lo sono)
     return boxes, final_scores, class_ids
 
-# Video capture
+# Webcam
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, INPUT_SIZE)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, INPUT_SIZE)
@@ -61,6 +57,7 @@ while True:
     output_data = interpreter.get_tensor(output_details[0]['index'])
     boxes, scores, class_ids = process_output(output_data)
 
+    # Ridimensionamento box su immagine originale
     scale_x = frame.shape[1] / INPUT_SIZE
     scale_y = frame.shape[0] / INPUT_SIZE
 
@@ -75,9 +72,9 @@ while True:
 
     fps = 1 / (end - start)
     cv2.putText(frame, f"FPS: {fps:.2f}", (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
 
-    cv2.imshow('YOLOv8 TFLite Live', frame)
+    cv2.imshow('YOLOv11 TFLite Inference', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
