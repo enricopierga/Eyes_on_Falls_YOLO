@@ -78,7 +78,7 @@ A real-time, distributed fall detection system using multiple RGB cameras, neura
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/distributed-fall-detection.git
+git clone https://github.com/andreavisi1/distributed-fall-detection.git
 cd distributed-fall-detection
 ```
 
