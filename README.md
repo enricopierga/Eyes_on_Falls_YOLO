@@ -231,10 +231,6 @@ python3 tools/analyze_bias.py --logs logs/
 python3 tools/reset_weights.py --node-id camera_c --soft
 ```
 
-## 🤝 Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
 ### Development Setup
 ```bash
 # Create virtual environment
@@ -278,15 +274,3 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 ---
 
 **Note**: This is a research prototype. For production deployment in healthcare settings, additional certifications and safety validations are required.
-
-**Contact**: [your.email@university.edu](mailto:your.email@university.edu)
-
-**Citation**: If you use this work in your research, please cite:
-```bibtex
-@inproceedings{yourname2024distributed,
-  title={Distributed Real-Time Fall Detection with Adaptive Consensus},
-  author={Your Name and Collaborators},
-  booktitle={Conference Name},
-  year={2024}
-}
-```
