@@ -265,11 +265,12 @@ This project implements concepts from:
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## 🤝 Contributions
 
-- Prof. Aldo [Surname] for distributed systems guidance
-- RSA partners in Abruzzo for real-world testing
-- Open source community for foundational libraries
+|Nome | GitHub |
+|-----------|--------|
+| 🔨 `Piergallini Enrico` | [Click here](https://github.com/enricopierga) |
+| 🪛 `Visi Andrea` | [Click here](https://github.com/Andreavisi1) |
 
 ---
 
