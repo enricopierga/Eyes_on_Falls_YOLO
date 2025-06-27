@@ -1,8 +1,0 @@
-
-path: dataset
-train: images/train
-val: images/val
-test: images/test
-
-nc: 2
-names: ['not_fallen', 'fallen']
