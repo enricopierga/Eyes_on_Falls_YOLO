@@ -5,7 +5,7 @@ import time
 
 # Configurazione
 MODEL_PATH = "best_fall_detection_yolo11_float16.tflite"
-INPUT_SIZE = 640
+INPUT_IMAGE_SIZE = 640
 CONF_THRESHOLD = 0.3
 CLASS_NAMES = ["fallen", "not_fallen"]
 
@@ -38,15 +38,15 @@ def process_output(output):
 
 # Webcam
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, INPUT_SIZE)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, INPUT_SIZE)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, INPUT_IMAGE_SIZE)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, INPUT_IMAGE_SIZE)
 
 while True:
     ret, frame = cap.read()
     if not ret:
         break
 
-    img_resized = cv2.resize(frame, (INPUT_SIZE, INPUT_SIZE))
+    img_resized = cv2.resize(frame, (INPUT_IMAGE_SIZE, INPUT_IMAGE_SIZE))
     input_data = np.expand_dims(img_resized, axis=0).astype(np.float32) / 255.0
     interpreter.set_tensor(input_details[0]['index'], input_data)
 
@@ -58,8 +58,8 @@ while True:
     boxes, scores, class_ids = process_output(output_data)
 
     # Ridimensionamento box su immagine originale
-    scale_x = frame.shape[1] / INPUT_SIZE
-    scale_y = frame.shape[0] / INPUT_SIZE
+    scale_x = frame.shape[1] / INPUT_IMAGE_SIZE
+    scale_y = frame.shape[0] / INPUT_IMAGE_SIZE
 
     for i in range(len(boxes)):
         x1, y1, x2, y2 = boxes[i]
